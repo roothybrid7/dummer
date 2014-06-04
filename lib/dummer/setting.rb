@@ -1,6 +1,6 @@
 module Dummer
   class Setting
-    attr_accessor :rate, :output, :labeled, :label_delimiter, :delimiter, :fields, :workers, :message, :input, :log
+    attr_accessor :rate, :output, :labeled, :label_delimiter, :delimiter, :fields, :workers, :message, :input, :log, :input_json_map_per_line
     attr_accessor :host, :port, :tag
 
     def initialize

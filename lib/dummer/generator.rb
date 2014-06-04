@@ -1,3 +1,5 @@
+require 'json'
+
 module Dummer
   class Generator
     def initialize(setting)
@@ -6,6 +8,8 @@ module Dummer
           Field.message_proc(fields, setting.labeled, setting.delimiter, setting.label_delimiter)
         elsif input = setting.input
           Input.message_proc(input)
+        elsif input = setting.input_json_map_per_line
+          InputJSONMapPerLine.message_proc(input)
         else
           Message.message_proc(setting.message)
         end
@@ -14,6 +18,8 @@ module Dummer
           Field.record_proc(fields)
         elsif input = setting.input
           Input.record_proc(input)
+        elsif input = setting.input_json_map_per_line
+          InputJSONMapPerLine.record_proc(input)
         else
           Message.record_proc(setting.message)
         end
@@ -70,6 +76,17 @@ module Dummer
         # ToDo: implement parser
         message_proc = message_proc(input)
         Proc.new { { "message" => message_proc.call } }
+      end
+    end
+
+    class InputJSONMapPerLine < Input
+      def self.record_proc(input)
+        message_proc = message_proc(input)
+        Proc.new {
+          message = message_proc.call
+          # forward key-values per line
+          JSON::Parser.new(message).parse
+        }
       end
     end
 

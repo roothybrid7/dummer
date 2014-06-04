@@ -181,6 +181,10 @@ Following parameters in the configuration file are available:
 
     Use this if you want to write messages by reading lines of an input file in rotation. `message` is ignored.
 
+* input_json_map_per_line[WIP]
+
+    Use this if you want to write records as-is with JSON parsing per line by reading lines of an input file in rotation. `message` is ignored.
+
 * message
 
     Use this if you want to write only a specific message. 
