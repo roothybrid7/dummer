@@ -5,7 +5,7 @@ require 'dummer/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "dummer"
-  spec.version       = Dummer::VERSION + "alpha.1"
+  spec.version       = Dummer::VERSION
   spec.authors       = ["sonots"]
   spec.email         = ["sonots@gmail.com"]
   spec.description   = %q{Generates dummy log data for Fluentd benchmark}
